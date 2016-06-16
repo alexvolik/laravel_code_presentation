@@ -15,11 +15,6 @@ use Illuminate\Support\Arr;
 class BonusCardService
 {
     /**
-     * @var int
-     */
-    protected $recordsPerPage = 15;
-
-    /**
      * @var BonusCardRepository
      */
     protected $bonusCardRepository;
@@ -54,7 +49,7 @@ class BonusCardService
      */
     public function search($params)
     {
-        return $this->bonusCardRepository->search($params, $this->recordsPerPage);
+        return $this->bonusCardRepository->search($params, config('pagination.bonus_card_per_page'));
     }
 
     /**
