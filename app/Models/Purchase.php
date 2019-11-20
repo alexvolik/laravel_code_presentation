@@ -1,9 +1,9 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-
 
 /**
  * App\Models\Purchase
@@ -22,11 +22,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Purchase extends Model
 {
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function bonusCard()
+    public function bonusCard(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(BonusCard::class);
     }

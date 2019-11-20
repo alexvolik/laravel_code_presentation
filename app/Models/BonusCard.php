@@ -1,10 +1,10 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Models;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
-
 
 /**
  * App\Models\BonusCard
@@ -32,18 +32,12 @@ class BonusCard extends Model
 
     protected $fillable = ['series', 'number'];
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function purchases()
+    public function purchases(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(Purchase::class)->orderBy('created_at', 'desc');
     }
 
-    /**
-     * @return boolean
-     */
-    public function isExpired()
+    public function isExpired(): bool
     {
         return $this->expired_at->gt(Carbon::now());
     }

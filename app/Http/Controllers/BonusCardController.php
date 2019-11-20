@@ -4,23 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Models\BonusCard;
 use App\Http\Requests\BonusCardUpdateStatusRequest;
-use App\Repositories\BonusCardRepository;
 use App\Services\BonusCardService;
 use App\Services\BreadCrumbs;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Requests\BonusCardCreateRequest;
 
-/**
- * Class BonusCardController
- * @package App\Http\Controllers
- */
 class BonusCardController extends Controller
 {
     /**
      * @var BonusCardService
      */
-    protected $bonusCardService;
+    private $bonusCardService;
 
     /**
      * BonusCardController constructor.
@@ -83,7 +77,7 @@ class BonusCardController extends Controller
      * @param  BreadCrumbs $breadCrumbs
      * @return \Illuminate\Http\Response
      */
-    public function show($id, BreadCrumbs $breadCrumbs)
+    public function show(int $id, BreadCrumbs $breadCrumbs)
     {
         $breadCrumbs->push('Bonus cards', route('bonus_cards.index'));
         $breadCrumbs->push("Edit $id");
@@ -92,7 +86,7 @@ class BonusCardController extends Controller
 
         $firstPurchase = $card->purchases->first();
 
-        return view('bonus_card.show', compact('card', 'purchases', 'firstPurchase'));
+        return view('bonus_card.show', compact('card', 'firstPurchase'));
     }
 
     /**
@@ -102,7 +96,7 @@ class BonusCardController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function updateStatus(BonusCardUpdateStatusRequest $request, $id)
+    public function updateStatus(BonusCardUpdateStatusRequest $request, int $id)
     {
         $this->bonusCardService->updateStatus($id, $request->get('status'));
 
@@ -115,7 +109,7 @@ class BonusCardController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(int $id)
     {
         $this->bonusCardService->destroy($id);
 
