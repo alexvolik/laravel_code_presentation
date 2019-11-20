@@ -1,62 +1,38 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Services;
 
-
-use App\BonusCard;
+use App\Models\BonusCard;
 use App\Repositories\BonusCardRepository;
 use Carbon\Carbon;
 use Illuminate\Support\Arr;
 
-/**
- * Class BonusCardService
- * @package App\Services
- */
 class BonusCardService
 {
-    /**
-     * @var BonusCardRepository
-     */
-    protected $bonusCardRepository;
+    private $bonusCardRepository;
 
     public function __construct(BonusCardRepository $bonusCardRepository)
     {
         $this->bonusCardRepository = $bonusCardRepository;
     }
 
-    /**
-     * @param $id
-     * @return BonusCard
-     */
-    public function findWithPurchases($id)
+    public function findWithPurchases(int $id): BonusCard
     {
         return $this->bonusCardRepository->findWithPurchases($id);
     }
 
-    /**
-     * @param $id
-     * @param $status
-     * @return bool
-     */
-    public function updateStatus($id, $status)
+    public function updateStatus(int $id, bool $status): bool
     {
         return $this->bonusCardRepository->updateStatus($id, $status);
     }
 
-    /**
-     * @param $params
-     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
-     */
-    public function search($params)
+    public function search(array $params): \Illuminate\Contracts\Pagination\LengthAwarePaginator
     {
         return $this->bonusCardRepository->search($params, config('pagination.bonus_card_per_page'));
     }
 
-    /**
-     * @param $data
-     * @return BonusCard
-     */
-    public function create($data)
+    public function create(array $data): BonusCard
     {
         $expiration = Arr::pull($data, 'expiration');
 
@@ -65,11 +41,7 @@ class BonusCardService
         return $this->bonusCardRepository->create($data);
     }
 
-    /**
-     * @param $id
-     * @return int
-     */
-    public function destroy($id)
+    public function destroy(int $id): int
     {
         return $this->bonusCardRepository->destroy($id);
     }

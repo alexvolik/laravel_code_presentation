@@ -1,24 +1,16 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Repositories;
 
-
-use App\BonusCard;
+use App\Models\BonusCard;
 use Illuminate\Support\Arr;
 
-/**
- * Class BonusCardRepository
- * @package App\Repositories
- */
 class BonusCardRepository
 {
-    /**
-     * @param $id
-     * @return BonusCard
-     */
-    public function findWithPurchases($id)
+    public function findWithPurchases(int $id): BonusCard
     {
-        return BonusCard::where('bonus_cards.id', $id)
+        return BonusCard::query()->where('bonus_cards.id', $id)
             ->selectRaw('bonus_cards.*, SUM(purchases.amount) as purchases_amount')
             ->leftJoin('purchases', 'purchases.bonus_card_id', '=', 'bonus_cards.id')
             ->groupBy('bonus_cards.id')
@@ -26,12 +18,7 @@ class BonusCardRepository
             ->firstOrFail();
     }
 
-    /**
-     * @param $id
-     * @param $status
-     * @return bool
-     */
-    public function updateStatus($id, $status)
+    public function updateStatus(int $id, bool $status): bool
     {
         $card = BonusCard::findOrFail($id);
 
@@ -40,30 +27,18 @@ class BonusCardRepository
         return $card->save();
     }
 
-    /**
-     * @param $params
-     * @return BonusCard
-     */
-    public function create($params)
+
+    public function create(array $params): BonusCard
     {
         return BonusCard::create($params);
     }
 
-    /**
-     * @param $id
-     * @return int
-     */
-    public function destroy($id)
+    public function destroy(int $id): int
     {
         return BonusCard::destroy($id);
     }
 
-    /**
-     * @param $params
-     * @param $perPage
-     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
-     */
-    public function search($params, $perPage)
+    public function search(array $params, int $perPage): \Illuminate\Contracts\Pagination\LengthAwarePaginator
     {
         $cards = BonusCard::query();
 
