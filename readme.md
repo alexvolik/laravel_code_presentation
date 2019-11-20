@@ -12,4 +12,9 @@ Execute next commands to install all dependencies:
 * `bower install`
 * `gulp`
 
+Refactored code and laravel version (from 5.1 to 5.8)
 
+- Updated code with type declarations and strict type declare  
+- Added phpdoc properties in models  
+- Updated project structure and naming  
+- Upgrade the laravel version  
