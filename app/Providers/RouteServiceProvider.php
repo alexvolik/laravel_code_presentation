@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\BonusCard;
+use Illuminate\Routing\Route;
 use Illuminate\Routing\Router;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
@@ -17,18 +18,10 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected $namespace = 'App\Http\Controllers';
 
-    /**
-     * Define your route model bindings, pattern filters, etc.
-     *
-     * @param  \Illuminate\Routing\Router  $router
-     * @return void
-     */
-    public function boot(Router $router)
+
+    public function boot()
     {
-        //
-
-        parent::boot($router);
-
+        parent::boot();
     }
 
     /**

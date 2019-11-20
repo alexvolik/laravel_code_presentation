@@ -17,6 +17,7 @@ return [
 
     'env' => env('APP_ENV', 'production'),
 
+    'name' => 'Code presentation',
     /*
     |--------------------------------------------------------------------------
     | Application URL
