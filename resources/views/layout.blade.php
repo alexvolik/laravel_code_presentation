@@ -7,7 +7,7 @@
     </head>
     <body>
         <div class="container app-container">
-            @widget('breadCrumbs')
+            @widget('breadCrumbsWidget')
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title">@yield('title')</h3>

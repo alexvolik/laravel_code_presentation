@@ -1,20 +1,17 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Services;
 
-use App\Models\BreadCrumb;
+use App\DTO\BreadCrumbDTO;
 use Illuminate\Support\Collection;
 
-/**
- * Class BreadCrumbs
- * @package App\Services
- */
 class BreadCrumbs
 {
     /**
      * @var Collection
      */
-    protected $items;
+    private $items;
 
     /**
      * BreadCrumbs constructor.
@@ -24,19 +21,13 @@ class BreadCrumbs
         $this->items = new Collection();
     }
 
-    /**
-     * @param $title
-     * @param bool $link
-     */
-    public function push($title, $link = false)
+    public function push(string $title, string $link = ''): void
     {
-        $this->items->push(new BreadCrumb($title, $link));
+        $this->items->push(new BreadCrumbDTO($title, $link));
     }
 
-    /**
-     * @return Collection
-     */
-    public function getItems()
+
+    public function getItems(): Collection
     {
         return $this->items;
     }
