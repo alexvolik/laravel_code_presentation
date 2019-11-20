@@ -16,7 +16,8 @@
         "phpunit/phpunit": "~7.0",
         "filp/whoops": "~2.0",
         "symfony/dom-crawler": "~3",
-        "symfony/css-selector": "~3"
+        "symfony/css-selector": "~3",
+        "barryvdh/laravel-ide-helper": "^2.6"
     },
     "autoload": {
         "classmap": [

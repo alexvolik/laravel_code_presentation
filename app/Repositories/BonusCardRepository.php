@@ -3,20 +3,12 @@
 namespace App\Repositories;
 
 
-use App\BonusCard;
+use App\Models\BonusCard;
 use Illuminate\Support\Arr;
 
-/**
- * Class BonusCardRepository
- * @package App\Repositories
- */
 class BonusCardRepository
 {
-    /**
-     * @param $id
-     * @return BonusCard
-     */
-    public function findWithPurchases($id)
+    public function findWithPurchases(int $id): BonusCard
     {
         return BonusCard::where('bonus_cards.id', $id)
             ->selectRaw('bonus_cards.*, SUM(purchases.amount) as purchases_amount')
@@ -26,12 +18,7 @@ class BonusCardRepository
             ->firstOrFail();
     }
 
-    /**
-     * @param $id
-     * @param $status
-     * @return bool
-     */
-    public function updateStatus($id, $status)
+    public function updateStatus(int $id, bool $status): bool
     {
         $card = BonusCard::findOrFail($id);
 

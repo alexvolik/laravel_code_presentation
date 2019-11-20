@@ -11,7 +11,7 @@
 |
 */
 
-$factory->define(App\User::class, function (Faker\Generator $faker) {
+$factory->define(App\Models\User::class, function (Faker\Generator $faker) {
     return [
         'name' => $faker->name,
         'email' => $faker->safeEmail,
@@ -20,7 +20,7 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
     ];
 });
 
-$factory->define(App\BonusCard::class, function (Faker\Generator $faker) {
+$factory->define(App\Models\BonusCard::class, function (Faker\Generator $faker) {
     return [
         'series' => strtoupper($faker->lexify('???')),
         'number' => $faker->randomNumber(6),
@@ -29,7 +29,7 @@ $factory->define(App\BonusCard::class, function (Faker\Generator $faker) {
     ];
 });
 
-$factory->define(App\Purchase::class, function (Faker\Generator $faker) {
+$factory->define(App\Models\Purchase::class, function (Faker\Generator $faker) {
     return [
         'name' => $faker->text(),
         'amount' => $faker->randomFloat(2, 10),

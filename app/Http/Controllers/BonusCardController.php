@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\BonusCard;
+use App\Models\BonusCard;
 use App\Http\Requests\BonusCardUpdateStatusRequest;
 use App\Repositories\BonusCardRepository;
 use App\Services\BonusCardService;

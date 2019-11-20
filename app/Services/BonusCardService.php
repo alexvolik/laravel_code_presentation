@@ -3,7 +3,7 @@
 namespace App\Services;
 
 
-use App\BonusCard;
+use App\Models\BonusCard;
 use App\Repositories\BonusCardRepository;
 use Carbon\Carbon;
 use Illuminate\Support\Arr;

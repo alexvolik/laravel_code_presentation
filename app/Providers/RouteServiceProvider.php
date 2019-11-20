@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\BonusCard;
+use App\Models\BonusCard;
 use Illuminate\Routing\Route;
 use Illuminate\Routing\Router;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
